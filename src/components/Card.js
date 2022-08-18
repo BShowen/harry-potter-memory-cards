@@ -1,14 +1,19 @@
 import React, { useState } from "react";
 
-export default function Card() {
+export default function Card(props) {
   const [clicked, setClicked] = useState(false);
 
   const clickHandler = () => {
-    setClicked(true);
+    if (clicked) {
+      props.resetScore();
+    } else {
+      props.incrementScore();
+      setClicked(true);
+    }
   };
 
   const style = {
-    border: "1px solid red",
+    border: clicked ? "3px solid red" : "3px solid green",
     margin: "5px",
     padding: "5px",
   };

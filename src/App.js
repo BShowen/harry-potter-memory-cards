@@ -30,7 +30,7 @@ export default function App() {
 
   return (
     <>
-      <AppNav currentScore={currentScore} />
+      <AppNav {...currentScore} />
       <div id="app-container">
         <Game incrementScore={incrementScore} resetScore={resetScore} />
       </div>
