@@ -1,7 +1,10 @@
+import React from "react";
+import Game from "./components/Game";
+
 export default function App() {
   return (
-    <div>
-      <p>Hello World!</p>
+    <div id="app-container">
+      <Game />
     </div>
   );
 }
