@@ -26,5 +26,5 @@ export default function useScoreTracker() {
     });
   };
 
-  return { incrementScore, resetScore, score };
+  return [incrementScore, resetScore, score];
 }

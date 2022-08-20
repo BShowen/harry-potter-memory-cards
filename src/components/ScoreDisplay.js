@@ -1,5 +1,5 @@
 import React from "react";
-export default function ScoreDisplay({ currentScore, highScore }) {
+export function ScoreDisplay({ currentScore, highScore }) {
   return (
     <div id="score-container" className="d-flex flex-row">
       <div className="m-2">
