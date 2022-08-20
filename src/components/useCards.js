@@ -21,6 +21,21 @@ export function useCards(updateScore) {
     );
   }, [clickedCards, updateScore]);
 
+  useEffect(() => {
+    async function fetchImages() {
+      const response = await fetch(
+        "https://hp-api.herokuapp.com/api/characters"
+      );
+
+      const data = await response.json();
+      return data.slice(0, 14);
+    }
+
+    fetchImages()
+      .then((data) => console.log(data))
+      .catch((err) => console.log("Error:", err));
+  }, []);
+
   function getCards() {
     const cards = [];
     for (let i = 0; i < 14; i++) {
