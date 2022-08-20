@@ -2,7 +2,8 @@ import { useState, useEffect } from "react";
 import { Card } from "./Card";
 export function useCards(updateScore) {
   const [clickedCards, setClickedCards] = useState({});
-  const [cards, setCards] = useState(getCards);
+  const [cardData, setCardData] = useState([]);
+  const [cards, setCards] = useState([]);
 
   function handleCardClick(cardId) {
     setClickedCards((prevState) => {
@@ -16,10 +17,12 @@ export function useCards(updateScore) {
     } else {
       updateScore(false);
     }
+
+    if (cards.length === 0) return;
     setCards((prevCards) =>
       [...prevCards].sort(() => (Math.random() > 0.5 ? 1 : -1))
     );
-  }, [clickedCards, updateScore]);
+  }, [cards.length, clickedCards, updateScore]);
 
   useEffect(() => {
     async function fetchImages() {
@@ -32,17 +35,36 @@ export function useCards(updateScore) {
     }
 
     fetchImages()
-      .then((data) => console.log(data))
+      .then((characters) => {
+        const characterData = [];
+        characters.forEach((character) => {
+          const { name, image } = character;
+          characterData.push({ name, image });
+        });
+        setCardData(characterData);
+      })
       .catch((err) => console.log("Error:", err));
   }, []);
 
-  function getCards() {
-    const cards = [];
-    for (let i = 0; i < 14; i++) {
-      cards[i] = <Card key={i} id={i} handleClick={handleCardClick} />;
-    }
-    return cards;
-  }
+  useEffect(() => {
+    const createCards = () => {
+      const cards = [];
+      for (let i = 0; i < 14; i++) {
+        cards[i] = (
+          <Card
+            key={i}
+            id={i}
+            cardData={cardData[i]}
+            handleClick={handleCardClick}
+          />
+        );
+      }
+      return cards;
+    };
+
+    if (cardData.length === 0) return;
+    setCards(createCards);
+  }, [cardData]);
 
   return [cards];
 }
