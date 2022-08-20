@@ -34,15 +34,24 @@ export function useCards(updateScore) {
       return data.slice(0, 14);
     }
 
-    fetchImages()
-      .then((characters) => {
-        const characterData = [];
-        characters.forEach((character) => {
-          const { name, image } = character;
-          characterData.push({ name, image });
+    async function preLoadImages(characters) {
+      const characterData = characters.map((character) => {
+        return new Promise((resolve, reject) => {
+          const { name, image: src } = character;
+
+          const image = new Image();
+          image.src = src;
+          image.onload = () => resolve({ name, image });
+          image.onerror = () => reject();
         });
-        setCardData(characterData);
-      })
+      });
+
+      return await Promise.all(characterData);
+    }
+
+    fetchImages()
+      .then((characters) => preLoadImages(characters))
+      .then((characterData) => setCardData(characterData))
       .catch((err) => console.log("Error:", err));
   }, []);
 
