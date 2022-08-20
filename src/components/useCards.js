@@ -6,7 +6,7 @@ export function useCards(updateScore) {
 
   function handleCardClick(cardId) {
     setClickedCards((prevState) => {
-      return prevState[cardId] ? {} : { ...prevState, ...{ cardID: 1 } };
+      return prevState[cardId] ? {} : { ...prevState, ...{ [cardId]: 1 } };
     });
   }
 
