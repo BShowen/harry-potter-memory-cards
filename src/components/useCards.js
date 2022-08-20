@@ -11,7 +11,6 @@ export function useCards(updateScore) {
   }
 
   useEffect(() => {
-    console.log(clickedCards);
     if (Object.values(clickedCards).some((clicks) => clicks === 1)) {
       updateScore(true);
     } else {
