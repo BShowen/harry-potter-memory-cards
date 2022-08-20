@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 
 export default function useScoreTracker() {
   const [score, setCurrentScore] = useState({
@@ -6,7 +6,7 @@ export default function useScoreTracker() {
     highScore: 0,
   });
 
-  const incrementScore = () => {
+  const incrementScore = useCallback(() => {
     setCurrentScore((prevScore) => {
       const { currentScore: previousScore, highScore: previousHighScore } =
         prevScore;
@@ -18,13 +18,13 @@ export default function useScoreTracker() {
           currentScore > previousHighScore ? currentScore : previousHighScore,
       };
     });
-  };
+  }, []);
 
-  const resetScore = () => {
+  const resetScore = useCallback(() => {
     setCurrentScore((prevScore) => {
       return { ...prevScore, currentScore: 0 };
     });
-  };
+  }, []);
 
   return [incrementScore, resetScore, score];
 }
