@@ -1,5 +1,5 @@
 import React from "react";
-
+import { CardImage } from "./CardImage";
 export function Card({ handleClick, id, cardData }) {
   const style = {
     border: "3px solid green",
@@ -7,19 +7,16 @@ export function Card({ handleClick, id, cardData }) {
     padding: "5px",
   };
 
-  const clickHandler = () => {
-    console.log({ id, name: cardData.name });
-  };
   return (
     <div
       className="game-card"
       style={style}
       onClick={() => {
-        clickHandler();
         handleClick(id);
       }}
     >
-      <h1>{id}</h1>
+      <CardImage characterName={cardData.name} imageUrl={cardData.image.src} />
+      <p>{cardData.name}</p>
     </div>
   );
 }
