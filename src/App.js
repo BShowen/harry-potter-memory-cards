@@ -22,7 +22,7 @@ export default function App() {
     <>
       <nav
         className="nav sticky-top navbar-dark"
-        style={{ backgroundColor: "#2B3036" }}
+        style={{ backgroundColor: "#6C757D" }}
       >
         <ScoreDisplay {...score} />
       </nav>
