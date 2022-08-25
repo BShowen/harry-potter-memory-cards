@@ -1,14 +1,12 @@
 import React from "react";
-import { useCards } from "./useCards";
+import { Cards } from "./Cards";
 
-export default function Game({ updateScore }) {
-  const [cards] = useCards(updateScore);
-
+export default function Game(props) {
   return (
     <div className="row justify-content-center pb-3">
       <div className="row justify-content-center">
         <div className="col">
-          <div className="d-flex flex-wrap justify-content-center">{cards}</div>
+          <Cards {...props} />
         </div>
       </div>
     </div>

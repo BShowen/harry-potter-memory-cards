@@ -1,30 +1,27 @@
-import { useCallback, useState } from "react";
+import { useReducer, useState } from "react";
 
 export default function useScoreTracker() {
-  const [score, setCurrentScore] = useState({
-    currentScore: 0,
-    highScore: 0,
-  });
+  const [clickedCharacters, setClicked] = useState([]);
+  const [state, dispatch] = useReducer(reducer, { score: 0, highScore: 0 });
 
-  const incrementScore = useCallback(() => {
-    setCurrentScore((prevScore) => {
-      const { currentScore: previousScore, highScore: previousHighScore } =
-        prevScore;
-
-      const currentScore = previousScore + 1;
+  // A modified version of the reducer your probably used to seeing.
+  // character = {name: "foo-bar"}
+  function reducer(state, character) {
+    if (clickedCharacters.includes(character.name)) {
+      setClicked([]);
       return {
-        currentScore,
-        highScore:
-          currentScore > previousHighScore ? currentScore : previousHighScore,
+        score: 0,
+        highScore: state.highScore,
       };
-    });
-  }, []);
+    } else {
+      setClicked(clickedCharacters.concat(character.name));
+      return {
+        score: state.score + 1,
+        highScore:
+          state.score + 1 > state.highScore ? state.score + 1 : state.highScore,
+      };
+    }
+  }
 
-  const resetScore = useCallback(() => {
-    setCurrentScore((prevScore) => {
-      return { ...prevScore, currentScore: 0 };
-    });
-  }, []);
-
-  return [incrementScore, resetScore, score];
+  return [state, dispatch];
 }

@@ -1,22 +1,11 @@
-import React, { useCallback } from "react";
 import Game from "./components/Game";
 import { FiGithub } from "react-icons/fi";
 import useScoreTracker from "./components/useScoreTracker";
 import { ScoreDisplay } from "./components/ScoreDisplay";
 
 export default function App() {
-  const [incrementScore, resetScore, score] = useScoreTracker();
-
-  const updateScore = useCallback(
-    (shouldUpdate) => {
-      if (shouldUpdate) {
-        incrementScore();
-      } else {
-        resetScore();
-      }
-    },
-    [incrementScore, resetScore]
-  );
+  const [score, dispatch] = useScoreTracker();
+  const setScore = (name) => dispatch({ name: `${name}` });
 
   return (
     <>
@@ -28,7 +17,7 @@ export default function App() {
       </nav>
 
       <div id="app-container" className="container bg-dark">
-        <Game updateScore={updateScore} />
+        <Game setScore={setScore} />
       </div>
 
       <footer className="bg-secondary text-light">

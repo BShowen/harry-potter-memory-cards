@@ -1,11 +1,13 @@
 import React from "react";
 import { CardImage } from "./CardImage";
-export function Card({ handleClick, id, cardData }) {
+export function Card({ cardData, shuffleCards, flippedProps, setScore }) {
   return (
     <div
       className="card p-1 m-1 border-0 col-5 col-sm-4 col-md-3 col-lg-2"
+      {...flippedProps}
       onClick={() => {
-        handleClick(id);
+        shuffleCards();
+        setScore(cardData.name);
       }}
     >
       <CardImage characterName={cardData.name} imageUrl={cardData.image.src} />
