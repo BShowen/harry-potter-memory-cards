@@ -4,7 +4,7 @@ export function Card({ cardData, shuffleCards, flippedProps, setScore }) {
   return (
     <div
       className="card p-1 m-1 border-0 col-5 col-sm-4 col-md-3 col-lg-2"
-      {...flippedProps}
+      {...flippedProps} //Flipper render props must be added to the container
       onClick={() => {
         shuffleCards();
         setScore(cardData.name);

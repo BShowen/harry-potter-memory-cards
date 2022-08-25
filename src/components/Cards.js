@@ -47,12 +47,15 @@ export function Cards(props) {
           className="d-flex flex-wrap justify-content-center"
         >
           {characterData.map((character) => (
+            //key and flipId need to not change on each render in order for
+            //flipper to work properly.
             <Flipped key={character.name} flipId={character.name}>
+              {/* //Use render props when rendering your own component using flipper */}
               {(flippedProps) => (
                 <Card
                   cardData={character}
                   shuffleCards={shuffleCards}
-                  flippedProps={flippedProps}
+                  flippedProps={flippedProps} //These are the render props from flipper
                   setScore={props.setScore}
                 />
               )}
