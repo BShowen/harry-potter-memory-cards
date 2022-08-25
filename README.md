@@ -2,7 +2,7 @@
 The game is simple. Don't select the same card twice. The cards will shuffle each time you select one. Increase your score by selecting a different card each time. 
 
 ###### View this app live [here](https://bshowen.github.io/harry-potter-memory-cards/)
-## 🙌 Project goal: Learn react hooks   
+## Project goal: Learn react hooks   
 Hooks are becoming more and more popular. I created this app to familiarize myself with how react hooks work. I this app I used useState, useEffect, and a few of my own custom hooks. 
 
 # 🧠 What I learned in this project
