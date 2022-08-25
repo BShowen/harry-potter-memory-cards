@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/harry-potter-memory-cards/static/css/main.b0474dfb.css",
-    "main.js": "/harry-potter-memory-cards/static/js/main.beee0271.js",
+    "main.js": "/harry-potter-memory-cards/static/js/main.08096aaf.js",
     "index.html": "/harry-potter-memory-cards/index.html",
     "main.b0474dfb.css.map": "/harry-potter-memory-cards/static/css/main.b0474dfb.css.map",
-    "main.beee0271.js.map": "/harry-potter-memory-cards/static/js/main.beee0271.js.map"
+    "main.08096aaf.js.map": "/harry-potter-memory-cards/static/js/main.08096aaf.js.map"
   },
   "entrypoints": [
     "static/css/main.b0474dfb.css",
-    "static/js/main.beee0271.js"
+    "static/js/main.08096aaf.js"
   ]
 }
